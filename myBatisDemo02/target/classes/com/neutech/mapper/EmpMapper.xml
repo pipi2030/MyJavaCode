@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neutech.mapper.EmpMapper">
+    <!--修改enterprise数据库 emp文件 实现简单的增删改查-->
+    <insert id="insert">
+        insert into emp(empno,ename)values
+        (#{empno},#{ename});
+    </insert>
+    <delete id="deleteByEmpno">
+        delete from emp where empno = #{empno};
+    </delete>
+    <update id = "updateEnameByEmpno">
+        update emp set ename = #{ename} where empno = #{empno};
+    </update>
+    <select id = "selectAllByEmpno" resultType="com.neutech.entity.Emp">
+        select * from emp where empno = #{empno};
+    </select>
+</mapper>

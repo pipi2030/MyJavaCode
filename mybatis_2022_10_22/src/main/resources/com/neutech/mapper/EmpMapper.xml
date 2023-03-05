@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neutech.mapper.EmpMapper">
+    <resultMap id="Test" type="com.neutech.entity.Emp">
+        <id property="empno" column="empno"></id>
+        <result property="ename" column="ename"></result>
+        <result property="job" column="job"></result>
+        <result property="mgr" column="mgr"></result>
+        <result property="hiredate" column="hiredate"></result>
+        <result property="sal" column="comm"></result>
+        <result property="deptno" column="deptno"></result>
+    </resultMap>
+    <select id="Demo" resultMap="Test">
+        select *from emp;
+    </select>
+    <insert id = "insert">
+        insert into emp(empno,ename) values
+        (7901,"YangXu"),
+        (7902,"HuaDuo");
+    </insert>
+    <delete id="delte">
+        delete from emp where empno = 7876;
+    </delete>
+    <update id="update">
+        update emp set sal = 100 where empno = 7902;
+    </update>
+    <select id="getEmpByEmpno" resultMap="Test">
+        select *from emp where empno = #{empno};
+    </select>
+    <insert id="insertValue">
+        insert into emp(empno,ename) values
+        (#{empno},#{ename});
+    </insert>
+    <select id="selectBySalAndDeptno" resultMap="Test">
+        select *from emp <where><if test="sal != null">sal > #{sal}</if>
+        <if test="deptno != null">and deptno = #{deptno}</if></where> ;
+    </select>
+    <select id="selectByMultiDeptno" resultMap="Test">
+        select *from emp <where> <foreach collection="array"
+              open="deptno in(" close=")" separator="," item="id">#{id}</foreach> ;</where>
+    </select>
+</mapper>

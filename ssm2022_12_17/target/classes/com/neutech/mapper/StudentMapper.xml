@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neutech.mapper.StudentMapper">
+    <resultMap id="Base" type="com.neutech.entity.Student">
+        <id property="id" column="id"></id>
+        <result property="name" column="name"></result>
+        <result property="age" column="age"></result>
+        <result property="clazzId" column="clazz_id"></result>
+    </resultMap>
+    <select id="list" resultMap="Base">
+        select id,name,age,clazz_id from s_student;
+    </select>
+</mapper>

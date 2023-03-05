@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+    <environments default="enterprise">
+        <environment id="enterprise">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+<!--                mysql版本不同驱动类不同-->
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/enterprise"/>
+                <property name="username" value="root"/>
+                <property name="password" value="1173389434xy"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+<!--        <mapper resource="com/neutech/mapper/EmpMapper.xml"></mapper>-->
+        <package name="com.neutech.mapper"/>
+    </mappers>
+</configuration>

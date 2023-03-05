@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>testJs</title>
+    <script type="text/javascript">
+      function fun1(){
+        alert("有趣");
+      }
+      // fun1();
+      function fun2(a,b) {
+          return a+b;
+      }
+      // alert(fun2(3,5));
+      var fun3 = function (){
+          alert("Hello");
+      }
+      // fun3();
+      function sum(num1,num2) {
+          var result = 0;
+          for(var i = 0;i < arguments.length;i++){
+              if(typeof(arguments[i]) == "number"){
+                  result += arguments[i];
+              }
+          }
+          return result;
+      }
+      // alert(sum(1,2,3));
+      //定义一个Object对象
+      // var people = new Object();
+      // people.name = "xuyang";
+      // people.age = 23;
+      // people.print = function(){
+      //     alert("姓名:" + this.name + " , 年龄是" + this.age);
+      // }
+      // people.print();
+
+      var people = {
+          name:"徐阳",
+          age:23,
+          print:function(){
+              alert("姓名:" + this.name + " , 年龄是" + this.age);
+          }
+      }
+      //编写动态注册onload事件
+      // window.onload = function (){
+      //     alert("动态注册onload事件，onload事件是页面解析完成后自动触发的事件")
+      // }
+
+      //编写动态注册onclick事件
+      // window.onload = function () {
+      //     alert("onload事件");
+      //     var btnobj = document.getElementById("btn1");
+      //     btnobj.onclick = function () {
+      //         alert("btn1的onclick事件");
+      //     }
+      // }
+
+      // //编写动态注册onblur事件
+      // window.onload = function () {
+      //     var textobj = document.getElementById("name");
+      //     textobj.onblur = function (){
+      //         alert("onblur事件");
+      //     }
+      // }
+
+      ////编写动态注册onchange事件，一般用于下拉列表或者文字框内容改变
+      // window.onload = function () {
+      //     var selectobj = document.getElementById("select");
+      //     selectobj.onchange = function () {
+      //         alert("男生已经改变");
+      //     }
+      //
+      // }
+
+      ////编写动态注册onsubmit事件
+      // window.onload = function () {
+      //     var formobj = document.getElementById("form01");
+      //     formobj.onsubmit = function (){
+      //         alert("onsubmit事件");
+      //         return false;
+      //     }
+      // }
+    </script>
+</head>
+<body>
+<button id="btn1">按钮1</button>
+<form action="http://localhost:8080" method="get" id = "form01">
+    <table>
+        <tr>
+            <td>username:</td>
+            <td><input type="text" name="username" value="请输入用户名" id="name"></td>
+        </tr>
+        <tr>
+            <td>password:</td>
+            <td><input type="password" name="password" value="请输入密码"></td>
+        </tr>
+        <tr>
+            <td>偶像:</td>
+            <td><select id="select" name="idol">
+                    <option>==男神==</option>
+                    <option>张</option>
+                    <option>李</option>
+                    <option>王</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="注册">
+            </td>
+        </tr>
+    </table>
+
+</form>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neutech.mapper.StudentMapper">
+    <resultMap id="Base" type="com.neutech.entity.Student">
+        <id property="id" column="id"></id>
+        <result property="name" column="name"></result>
+        <result property="age" column="age"></result>
+        <result property="clazzId" column="clazz_id"></result>
+    </resultMap>
+    <select id="selectAll" resultMap="Base">
+        select id,name,age,clazz_id from s_student;
+    </select>
+    <resultMap id="list" type="com.neutech.entity.Student">
+        <id property="id" column="sid"/>
+        <result property="name" column="sname"/>
+        <result property="age" column="age"/>
+        <association property="clazz" javaType="com.neutech.entity.Clazz">
+            <id property="id" column="cid"/>
+            <result property="name" column="cname"/>
+            <result property="room" column="room"/>
+        </association>
+    </resultMap>
+    <select id="list" resultMap="list">
+        select  s.id sid,s.name sname,age,c.name cname,room from s_student s inner join s_clazz c ON
+        s.clazz_id = c.id;
+    </select>
+    <insert id="insert">
+        insert into s_student values(#{id},#{name},#{age},#{clazzId});
+    </insert>
+    <delete id="del">
+        delete from s_student where id = #{id};
+    </delete>
+    <delete id="delByClazzId">
+        delete from s_student where clazz_id = #{clazzId};
+    </delete>
+    <select id="getById" resultMap="Base">
+        select id,name,age,clazz_id from s_student where id = #{id};
+    </select>
+    <update id="updateById">
+        update s_student set name = #{name},age = #{age},clazz_id = #{clazzId} where id = #{id};
+    </update>
+</mapper>

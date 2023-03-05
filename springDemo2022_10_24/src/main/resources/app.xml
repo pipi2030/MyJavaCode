@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+<!--    <bean id="productService" class="com.neutech.service.impl.ProductServiceImpl">-->
+<!--        <property name="num" value="0812"/>-->
+<!--        <property name="str" value="2030200233"/>-->
+<!--        <property name="dec" value="52.22"/>-->
+<!--        <property name="set">-->
+<!--            <set>-->
+<!--                <value>2</value>-->
+<!--                <value>3</value>-->
+<!--                <value>4</value>-->
+<!--                <value>5</value>-->
+<!--            </set>-->
+<!--        </property>-->
+<!--        <property name="list">-->
+<!--            <list>-->
+<!--                <value>1</value>-->
+<!--                <value>2</value>-->
+<!--                <value>3</value>-->
+<!--                <value>4</value>-->
+<!--            </list>-->
+<!--        </property>-->
+<!--        <property name="map">-->
+<!--            <map>-->
+<!--                <entry key="1" value="e"></entry>-->
+<!--                <entry key="2" value="d"></entry>-->
+<!--                <entry key="3" value="v"></entry>-->
+<!--                <entry key="4" value="c"></entry>-->
+<!--            </map>-->
+<!--        </property>-->
+<!--        <property name="productMapper" ref="productMapper"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="productMapper" class="com.neutech.mapper.Impl.ProductMapperImpl"></bean>-->
+
+    <context:component-scan base-package="com.neutech"/>
+
+</beans>
+

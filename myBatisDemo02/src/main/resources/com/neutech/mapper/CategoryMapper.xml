@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neutech.mapper.CategoryMapper">
+    <resultMap id="oneToMany" type="com.neutech.entity.Category">
+        <id column="sid" property="id"></id>
+        <result column="parent_id" property="parentId"></result>
+        <result column="sname" property="name"></result>
+        <result column="sstatus" property="status"></result>
+        <result column="sort_order" property="sortOrder"></result>
+        <result column="screate_time" property="createTime"></result>
+        <result column="supdate_time" property="updateTime"></result>
+        <collection property="productList" ofType="com.neutech.entity.Product">
+            <id column="pid" property="id"></id>
+            <result column="category_id" property="categoryId"></result>
+            <result column="pname" property="name"></result>
+            <result column="subtitle" property="subTitle"></result>
+            <result column="main_image" property="mainImage"></result>
+            <result column="sub_images" property="subImages"></result>
+            <result column="detail" property="detail"></result>
+            <result column="price" property="price"></result>
+            <result column="stock" property="stock"></result>
+            <result column="pstatus" property="status"></result>
+            <result column="pcreate_time" property="createTime"></result>
+            <result column="pupdate_time" property="updateTime"></result>
+        </collection>
+    </resultMap>
+    <select id="oneToManyDemo" resultMap="oneToMany">
+        select
+            p.id pid,category_id,p.name pname,subtitle,main_image,
+            sub_images,detail,price,stock,p.status pstatus,p.create_time pcreate_time,
+            p.update_time pupdate_time,
+            s.id sid,parent_id,s.name sname,s.status sstatus,sort_order,
+            s.create_time screate_time,s.update_time supdate_time
+        from s_product p inner join s_category s
+        on p.category_id = s.id limit 0,5;
+    </select>
+    <resultMap id="Base" type="com.neutech.entity.Category">
+        <id column="id" property="id"></id>
+        <result column="parent_id" property="parentId"></result>
+        <result column="name" property="name"></result>
+        <result column="status" property="status"></result>
+        <result column="sort_order" property="sortOrder"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="update_time" property="updateTime"></result>
+    </resultMap>
+    <select id="selectById" resultMap="Base">
+        select *from s_category where id = #{id};
+    </select>
+</mapper>

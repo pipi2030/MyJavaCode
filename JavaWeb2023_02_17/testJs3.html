@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>testJs</title>
+    <script type="text/javascript">
+        function testUserName(){
+            var usernameobj = document.getElementById("name");
+            var username = usernameobj.value;
+            var usernameSpanObj = document.getElementById("nameSpan");
+            var patt = /^\w{5,12}$/;
+            if(patt.test(username)){
+                usernameSpanObj.innerHTML = "<span id=\"nameSpan\">\n" +
+                    "                <img src=\"imgs/正确.png\"/>\n" +
+                    "            </span>";
+            }
+            else {
+                usernameSpanObj.innerHTML = "<span id=\"nameSpan\">\n" +
+                    "                <img src=\"imgs/错误.png\"/>\n" +
+                    "            </span>";
+            }
+        }
+        // window.onload = function () {
+        //     var btnInspetobj = document.getElementById("inspect");
+        //     btnInspetobj.onclick = function (){
+        //         testUserName();
+        //     }
+        // }
+        function selectAll(){
+            var hobbiesobj = document.getElementsByName("hobby");
+            for(var i = 0;i < hobbiesobj.length;i++){
+                hobbiesobj[i].checked = true;
+            }
+        }
+        function selectNone(){
+            var hobbiesobj = document.getElementsByName("hobby");
+            for(var i = 0;i < hobbiesobj.length;i++){
+                hobbiesobj[i].checked = false;
+            }
+        }
+        function selectReverse(){
+            var hobbiesobj = document.getElementsByName("hobby");
+            for(var i = 0;i < hobbiesobj.length;i++){
+                hobbiesobj[i].checked = !hobbiesobj[i].checked;
+            }
+        }
+        window.onload = function () {
+            var btnselectAllobj = document.getElementById("selectAll");
+            var btnselectNoneobj = document.getElementById("selectNone");
+            var btnselectReverseobj = document.getElementById("selectReverse");
+            btnselectAllobj.onclick = function () {
+                selectAll();
+            }
+            btnselectNoneobj.onclick = function () {
+                selectNone();
+            }
+            btnselectReverseobj.onclick = function (){
+                selectReverse();
+            }
+
+        }
+    </script>
+</head>
+<body>
+<form action="http://localhost:8080" method="get" id = "form01">
+    <table>
+        <tr>
+            <td>姓名:</td>
+            <td><input type="text" name="username" value="xxx" id="name"></td>
+            <td>
+                <span id="nameSpan">
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>密码:</td>
+            <td><input type="password" name="password" value="请输入密码"></td>
+        </tr>
+<!--        <tr>-->
+<!--            <td>兴趣爱好:</td>-->
+<!--            <td>-->
+<!--                <select>-->
+<!--                    <option>乒乓球</option>-->
+<!--                    <option>羽毛球</option>-->
+<!--                    <option>排球</option>-->
+<!--                </select>-->
+<!--            </td>-->
+<!--        </tr>-->
+        <tr>
+            <td>兴趣爱好:</td>
+            <td>
+                <input type="checkbox" name="hobby" value="羽毛球">羽毛球
+                <input type="checkbox" name="hobby" value="乒乓球">乒乓球
+                <input type="checkbox" name="hobby" value="排球">排球
+            </td>
+        </tr>
+        <tr>
+            <td><input type="button" value="全选" id="selectAll"></td>
+            <td><input type="button" value="全不选" id="selectNone"></td>
+            <td><input type="button" value="反选" id="selectReverse"></td>
+        </tr>
+<!--        <tr>-->
+<!--            <td>-->
+<!--                <input type="submit" value="注册">-->
+<!--                <input type="button" value="检验" id = "inspect">-->
+<!--            </td>-->
+<!--        </tr>-->
+    </table>
+</form>
+</body>
+</html>

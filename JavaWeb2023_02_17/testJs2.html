@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>testJs</title>
+    <script type="text/javascript">
+        function testUserName(){
+            var usernameobj = document.getElementById("name");
+            var username = usernameobj.value;
+            var usernameSpanObj = document.getElementById("nameSpan");
+            var patt = /^\w{5,12}$/;
+            if(patt.test(username)){
+                usernameSpanObj.innerHTML = "<span id=\"nameSpan\">\n" +
+                    "                <img src=\"imgs/正确.png\"/>\n" +
+                    "            </span>";
+            }
+            else {
+                usernameSpanObj.innerHTML = "<span id=\"nameSpan\">\n" +
+                    "                <img src=\"imgs/错误.png\"/>\n" +
+                    "            </span>";
+            }
+        }
+        window.onload = function () {
+            var btnInspetobj = document.getElementById("inspect");
+            btnInspetobj.onclick = function (){
+                testUserName();
+            }
+        }
+    </script>
+</head>
+<body>
+<form action="http://localhost:8080" method="get" id = "form01">
+    <table>
+        <tr>
+            <td>姓名:</td>
+            <td><input type="text" name="username" value="xxx" id="name"></td>
+            <td>
+                <span id="nameSpan">
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>密码:</td>
+            <td><input type="password" name="password" value="请输入密码"></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="注册">
+                <input type="button" value="检验" id = "inspect">
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

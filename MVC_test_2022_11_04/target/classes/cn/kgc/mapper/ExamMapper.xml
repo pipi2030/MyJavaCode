@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.kgc.mapper.ExamMapper">
+    <resultMap id="SelectAll" type="cn.kgc.entity.Exam">
+        <id column="sNo" property="sNo"></id>
+        <result column="cname" property="cname"></result>
+        <result column="tname" property="tname"></result>
+        <result column="sname" property="sname"></result>
+        <result column="ssex" property="ssex"></result>
+        <result column="classNo" property="classNo"></result>
+        <result column="examPlace" property="examPlace"></result>
+        <result column="seatNo" property="seatNo"></result>
+
+    </resultMap>
+    <select id="selectAllDemo" resultMap="SelectAll">
+        select *from exam;
+    </select>
+    <delete id="delete">
+        delete from exam where sname = "朱玺霖";
+    </delete>
+    <insert id="insert">
+        insert into exam(sNo,sname)values
+            (1111,"xx");
+    </insert>
+</mapper>

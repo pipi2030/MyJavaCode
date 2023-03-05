@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neutech.mapper.ProductMapper">
+    <resultMap id="One" type="com.neutech.entity.Product">
+        <id column="id" property="id"></id>
+        <result column="category_id" property="categoryId"></result>
+        <result column="name" property="name"></result>
+        <result column="subtitle" property="subTitle"></result>
+        <result column="main_image" property="mainImage"></result>
+        <result column="sub_images" property="subImages"></result>
+        <result column="detail" property="detail"></result>
+        <result column="price" property="price"></result>
+        <result column="stock" property="stock"></result>
+        <result column="status" property="status"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="update_time" property="updateTime"></result>
+        <association property="category" select="com.neutech.mapper.CategoryMapper.selectById"
+                     column="category_id" fetchType="lazy"></association>
+    </resultMap>
+    <select id="selectFive" resultMap="One">
+        select id,category_id,name from s_product limit 0,5;
+    </select>
+    <resultMap id="oneToOne" type="com.neutech.entity.Product">
+        <id column="pid" property="id"></id>
+        <result column="category_id" property="categoryId"></result>
+        <result column="pname" property="name"></result>
+        <result column="subtitle" property="subTitle"></result>
+        <result column="main_image" property="mainImage"></result>
+        <result column="sub_images" property="subImages"></result>
+        <result column="detail" property="detail"></result>
+        <result column="price" property="price"></result>
+        <result column="stock" property="stock"></result>
+        <result column="pstatus" property="status"></result>
+        <result column="pcreate_time" property="createTime"></result>
+        <result column="pupdate_time" property="updateTime"></result>
+        <association property="category" javaType="com.neutech.entity.Category">
+            <id column="sid" property="id"></id>
+            <result column="parent_id" property="parentId"></result>
+            <result column="sname" property="name"></result>
+            <result column="sstatus" property="status"></result>
+            <result column="sort_order" property="sortOrder"></result>
+            <result column="screate_time" property="createTime"></result>
+            <result column="supdate_time" property="updateTime"></result>
+        </association>
+    </resultMap>
+    <select id="oneToOneDemo" resultMap="oneToOne">
+        select
+            p.id pid,category_id,p.name pname,subtitle,main_image,
+            sub_images,detail,price,stock,p.status pstatus,p.create_time pcreate_time,
+            p.update_time pupdate_time,
+            s.id sid,parent_id,s.name sname,s.status sstatus,sort_order,
+            s.create_time screate_time,s.update_time supdate_time
+        from s_product p inner join s_category s
+        on p.category_id = s.id limit 0,5;
+    </select>
+    <resultMap id="selectByD" type="com.neutech.entity.Product">
+        <id column="id" property="id"></id>
+        <result column="category_id" property="categoryId"></result>
+        <result column="name" property="name"></result>
+        <result column="subtitle" property="subTitle"></result>
+        <result column="main_image" property="mainImage"></result>
+        <result column="sub_images" property="subImages"></result>
+        <result column="detail" property="detail"></result>
+        <result column="price" property="price"></result>
+        <result column="stock" property="stock"></result>
+        <result column="status" property="status"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="update_time" property="updateTime"></result>
+    </resultMap>
+    <select id="selectBYDynamic" resultMap="selectByD">
+        select id,name,category_id,price from s_product
+        <where>
+<!--            这里最好不用int类型 而用integer类型 后者可以返回null值-->
+            <if test="categoryId != null"> category_id = #{categoryId}</if>
+            <if test="price != null">and price = #{price} </if>
+        </where>
+    </select>
+    <delete id="del">
+        delete from s_product where id in
+            <foreach collection="array" open="(" close=")" separator="," item="id" >
+                #{id}
+            </foreach>
+    </delete>
+
+</mapper>
